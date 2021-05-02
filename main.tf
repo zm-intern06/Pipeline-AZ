@@ -1,7 +1,7 @@
 provider "azurerm" {
   features {}
 
-  subscription_id = "25a98a18-5e94-4b21-9d17-e8cf45bfd81f"
+  subscription_id = var.subscription_id
   client_id       = "e6a77e66-4d67-43e4-8983-34598241c329"
   client_secret   = "Fc3Ci8pZpOlJYmL5tT7HUTCj-pNokJWGxM"
   tenant_id       = "558506eb-9459-4ef3-b920-ad55c555e729"
@@ -34,4 +34,35 @@ resource "azurerm_container_registry" "acr" {
   sku                      = "Premium"
   admin_enabled            = false
   georeplication_locations = ["East US", "West Europe"]
+}
+resource "azurerm_container_group" "example" {
+  name                = "example-continst"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_address_type     = "public"
+  dns_name_label      = "aci-label"
+  os_type             = "Linux"
+
+  container {
+    name   = "hello-world"
+    image  = "microsoft/aci-helloworld:latest"
+    cpu    = "0.5"
+    memory = "1.5"
+
+    ports {
+      port     = 443
+      protocol = "TCP"
+    }
+  }
+
+  container {
+    name   = "sidecar"
+    image  = "microsoft/aci-tutorial-sidecar"
+    cpu    = "0.5"
+    memory = "1.5"
+  }
+
+  tags = {
+    environment = "testing"
+  }
 }
