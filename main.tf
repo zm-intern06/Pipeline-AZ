@@ -23,12 +23,12 @@ terraform {
   }
 }
 resource "azurerm_resource_group" "rg" {
-  name     = "example-resources"
+  name     = "resources_contain"
   location = "West Europe"
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                     = "containerRegistry1"
+  name                     = "containerRegistry"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   sku                      = "Premium"
