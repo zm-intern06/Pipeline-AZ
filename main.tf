@@ -38,7 +38,7 @@ resource "azurerm_container_registry" "acr" {
 
 
 resource "azurerm_resource_group" "arg" {
-  name     = "example-resources"
+  name     = "instin_resources"
   location = "West Europe"
 }
 
