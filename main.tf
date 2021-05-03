@@ -35,10 +35,18 @@ resource "azurerm_container_registry" "acr" {
   admin_enabled            = false
   georeplication_locations = ["East US", "West Europe"]
 }
+
+
+resource "azurerm_resource_group" "arg" {
+  name     = "example-resources"
+  location = "West Europe"
+}
+
+
 resource "azurerm_container_group" "acg" {
   name                = var.instance_name
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.arg.location
+  resource_group_name = azurerm_resource_group.arg.name
   ip_address_type     = "public"
   dns_name_label      = "aci-label"
   os_type             = "Linux"
