@@ -2,7 +2,7 @@ variable "registry_name" {
   default = "mrcontainerregistry01"
 }
 variable "instance_name" {
-  default = "mycontainerinstance"
+  default = "firstcontainerinsti"
 }
 
 variable "resource_group_location" {
