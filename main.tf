@@ -43,7 +43,7 @@ resource "azurerm_resource_group" "arg" {
 }
 
 
-resource "azurerm_container_group" "acg" {
+resource "azurerm_container_group" "exemp" {
   name                = var.instance_name
   location            = azurerm_resource_group.arg.location
   resource_group_name = azurerm_resource_group.arg.name
