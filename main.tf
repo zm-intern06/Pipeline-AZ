@@ -64,6 +64,11 @@ resource "azurerm_container_group" "exemp" {
     image  = "microsoft/aci-tutorial-sidecar"
     cpu    = "0.5"
     memory = "1.5"
+    
+     ports {
+      port     = 80
+      protocol = "TCP"
+    }
   }
 
   tags = {
