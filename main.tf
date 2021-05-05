@@ -53,7 +53,7 @@ resource "azurerm_container_group" "exemp" {
 
   container {
     name   = "hello-world"
-    image  = "microsoft/aci-helloworld:latest"
+    image  = "/myimage_latest.tar.gz/manifest.json:first-image:latest"
     cpu    = "0.5"
     memory = "1.5"
 
